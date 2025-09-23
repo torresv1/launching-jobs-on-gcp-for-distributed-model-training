@@ -1,6 +1,6 @@
 
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 from omegaconf import SI
@@ -20,8 +20,8 @@ class VMConfig:
     machine_type: str = "n1-standard-1"
     accelerator_count: int = 0
     accelerator_type: str = "nvidia-tesla-t4"
-    vm_type: VMtype = VMType.STANDARD
-    disks: list[str] = field(defaul_factory=lambda: [])
+    vm_type: VMType = VMType.STANDARD
+    disks: list[str] = field(default_factory=lambda: [])
 
 @dataclass
 class VMMetadataConfig:

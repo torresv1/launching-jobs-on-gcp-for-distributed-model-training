@@ -8,7 +8,7 @@ from google.api_core.extended_operation import ExtendedOperation
 from google.cloud import compute_v1, secretmanager
 
 
-def get_logger(name: str) -> logging.logger:
+def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(f"[{socket.gethostname()}] {name}")
 
 

@@ -6,7 +6,7 @@ from google.cloud import compute_v1
 
 from utils import get_logger
 
-class VMtype(Enum):
+class VMType(Enum):
     STANDARD = "STANDARD"
     SPOT = "SPOT"
     PREEMPTIBLE = "PREEMPTIBLE"
@@ -25,7 +25,7 @@ class VMConfig:
     machine_type: str
     accelerator_count: int
     accelerator_type: str
-    vm_type: VMtype
+    vm_type: VMType
     disks: list[str]
 
 

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from omegaconf import SI
 
-
+from configs.infrastructure.instance_group_creator_configs import InstanceGroupCreatorConfig
 
 @dataclass
 class MLFlowConfig:

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from omegaconf import SI
 
-from configs.insfrastructure.instance_template_creator_configs import InstanceTemplateCreatorConfig
+from configs.infrastructure.instance_template_creator_configs import InstanceTemplateCreatorConfig
 
 
 @dataclass
