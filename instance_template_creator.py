@@ -4,7 +4,7 @@ from enum import Enum
 
 from google.cloud import compute_v1
 
-from utils import get_logger
+from utils import get_logger, wait_for_extended_operation
 
 class VMType(Enum):
     STANDARD = "STANDARD"
@@ -161,7 +161,7 @@ class InstanceTemplateCreator:
         self.template.properties.metadata.items.append(compute_v1.Items(key="startup-script", value=startup_script))
         
         for meta_data_name, meta_data_value in self.vm_metadata_config.items():
-            self.template.properties.metadata.items.append(compute_v1.Items(key=meta_data_name, value=meta_data_value))
+            self.template.properties.metadata.items.append(compute_v1.Items(key=meta_data_name, value=str(meta_data_value)))
 
 
     def _read_startup_script(self, startup_script_path: str) -> str:

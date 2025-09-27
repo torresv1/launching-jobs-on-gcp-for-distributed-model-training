@@ -15,6 +15,8 @@ NODE_COUNT=$(curl --silent --fail http://metadata.google.internal/computeMetada/
 DISKS=$(curl --silent --fail http://metadata.google.internal/computeMetada/v1/instance/attributes/disks -H "Metadata-Flavor: Google"
 
 
+INSTANCE_GROUP_NAME=$(echo ${INSTANCE_GROUP_NAME} | tr '[:upper:]' '[:lower:]') 
+
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 echo "HELLO WORLD"
 echo "INSTANCE_GROUP_NAME=${INSTANCE_GROUP_NAME}"

@@ -1,9 +1,9 @@
 
-
+import time
 from instance_template_creator import InstanceTemplateCreator
-from utils import get_logger
+from utils import get_logger, wait_for_extended_operation
 
-from google.compute import compute_v1
+from google.cloud import compute_v1
 
 import time
 
@@ -36,11 +36,11 @@ class InstanceGroupCreator:
 
         instance_group_manager_resource = compute_v1.InstanceGroupManager(
             name=self.name,
-            base_instance_name=instance_template.self_lint,
+            base_instance_name=instance_template.self_link,
             target_size=self.node_count
         )
 
-        instance_group_managers_client = compute_v1.InstanceGroupClient()
+        instance_group_managers_client = compute_v1.InstanceGroupManagersClient()
         operation = instance_group_managers_client.insert(
             project=self.project_id, instance_group_manager_resource=instance_group_manager_resource, zone=self.zone
         )
@@ -65,14 +65,14 @@ class InstanceGroupCreator:
             if len(instance_ids) >= node_count:
                 break
 
-            time.sleep(pow(base_sleep_time, max_trials))
+            time.sleep(pow(base_sleep_time, trial))
             trial += 1
         return list(instance_ids)
 
 
 
     def list_instances_in_group(self) -> compute_v1.services.instances_group_managers.pagers.ListManagedInstancesPager:
-        instance_group_managers_client = compute_v1.InstanceGroupManagerClient()
+        instance_group_managers_client = compute_v1.InstanceGroupManagersClient()
         pager = instance_group_managers_client.list_managed_instances(
             project=self.project_id, instance_group_manager=self.name, zone=self.zone
         )
