@@ -5,8 +5,6 @@ from utils import get_logger, wait_for_extended_operation
 
 from google.cloud import compute_v1
 
-import time
-
 class InstanceGroupCreator:
     def __init__(
         self,
@@ -24,10 +22,10 @@ class InstanceGroupCreator:
         self.zone = zone
 
     def launch_instance_group(self) -> list[int]:
-        instance_group = _self_create_instance_group()
+        instance_group = self._create_instance_group()
         self.logger.debug(f"{instance_group=}")
 
-        instance_ids = self._get_instance_ids(slef.name, self.node_count)
+        instance_ids = self._get_instance_ids(self.name, self.node_count)
         return instance_ids
 
     def _create_instance_group(self) -> compute_v1.InstanceGroupManager:
@@ -36,7 +34,8 @@ class InstanceGroupCreator:
 
         instance_group_manager_resource = compute_v1.InstanceGroupManager(
             name=self.name,
-            base_instance_name=instance_template.self_link,
+            base_instance_name=self.name,
+            instance_template=instance_template.self_link,
             target_size=self.node_count
         )
 
