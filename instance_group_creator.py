@@ -70,7 +70,7 @@ class InstanceGroupCreator:
 
 
 
-    def list_instances_in_group(self) -> compute_v1.services.instances_group_managers.pagers.ListManagedInstancesPager:
+    def list_instances_in_group(self) -> compute_v1.services.instance_group_managers.pagers.ListManagedInstancesPager:
         instance_group_managers_client = compute_v1.InstanceGroupManagersClient()
         pager = instance_group_managers_client.list_managed_instances(
             project=self.project_id, instance_group_manager=self.name, zone=self.zone
