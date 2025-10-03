@@ -69,6 +69,7 @@ class TrainingInfo:
 
             if something goes wrong type in log viewer query field:
             '''
+            resource.type="gce_instance"
             logName="projects/{self.project_id}/logs/GCEMetadateScripts"
             resource.labels.instance_id={instance_ids_regex}
             '''

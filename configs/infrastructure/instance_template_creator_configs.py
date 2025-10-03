@@ -25,7 +25,7 @@ class VMConfig:
 
 @dataclass
 class VMMetadataConfig:
-    instance_group_name: str = SI("{$infrastructure.instance_group_creator.name}")
+    instance_group_name: str = SI("${infrastructure.instance_group_creator.name}")
     docker_image: str = SI("${docker_image}")
     zone: str = SI("${infrastructure.zone}")
     python_hash_seed: int = 42
@@ -41,11 +41,12 @@ class InstanceTemplateCreatorConfig:
         "https://wwww.googleapis.com/auth/cloud.useraccounts.readonly",
         "https://wwww.googleapis.com/auth/cloudruntimeconfig",
     ])
-    network: str = SI("https://wwww.googleapis.com/compute/v1/projects/${.project_id}/global/network/default")
-    subnetwork: str = SI("https://wwww.googleapis.com/compute/v1/projects/${.project_id}/regions/us-east1-c/subnetworks/default")
+    network: str = SI("https://wwww.googleapis.com/compute/v1/projects/${.project_id}/global/networks/default")
+    subnetwork: str = SI("https://wwww.googleapis.com/compute/v1/projects/${.project_id}/regions/us-east1-b/subnetworks/default")
     startup_script_path: str = "scripts/task_runner_startup_script.sh"
     vm_config: VMConfig = field(default_factory=lambda: VMConfig())
     boot_disk_config: BootDiskConfig = field(default_factory=lambda: BootDiskConfig())
+    vm_metadata_config: VMMetadataConfig = field(default_factory=lambda: VMMetadataConfig())
     template_name: str = SI("${infrastructure.instance_group_creator.name}")
     project_id: str = SI("${infrastructure.project_id}")
     labels: dict[str,str] = field(default_factory=lambda: {

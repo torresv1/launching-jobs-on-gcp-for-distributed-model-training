@@ -12,7 +12,7 @@ setup_config()
 @hydra.main(config_path=".", config_name="config", version_base=None)
 def run(config: DictConfig) -> None:
     instance_group_creator = instantiate(config.infrastructure.instance_group_creator)
-    instance_ids = instance_group_creator.lauch_instance_group()
+    instance_ids = instance_group_creator.launch_instance_group()
     training_info = TraniningInfo(
         project_id=config.infrastructure.project_id,
         zone=config.infrastructure.zone,

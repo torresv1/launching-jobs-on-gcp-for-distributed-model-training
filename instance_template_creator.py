@@ -56,19 +56,19 @@ class InstanceTemplateCreator:
     ) -> None:
         self.logger = get_logger(self.__class__.__name__)
 
-        self.scopes: scopes
-        self.network: network
-        self.subnetwork: subnetwork
-        self.startup_script_path: startup_script_path
-        self.vm_config: vm_config
-        self.boot_disk_config: boot_disk_config
-        self.vm_metadata_config: vm_metadata_config
-        self.template_name: template_name.lower()
-        self.project_id: project_id
-        self.labels: labels
+        self.scopes = scopes
+        self.network =  network
+        self.subnetwork =  subnetwork
+        self.startup_script_path =  startup_script_path
+        self.vm_config = vm_config
+        self.boot_disk_config =  boot_disk_config
+        self.vm_metadata_config = vm_metadata_config
+        self.template_name = template_name.lower()
+        self.project_id = project_id
+        self.labels = labels
 
         self.template = compute_v1.InstanceTemplate()
-        self.template = self.template_name
+        self.template.name = self.template_name
         
     def create_template(self) -> compute_v1.InstanceTemplate:
         self.logger.info("Started creating instance template...")
@@ -86,8 +86,7 @@ class InstanceTemplateCreator:
         wait_for_extended_operation(operation, "instance template creation")
 
         self.logger.info("Instance template has been created...")
-        return template_client.get(project=self.project_id, instance_template_resource=self.template)
-
+        return template_client.get(project=self.project_id, instance_template=self.template_name)
 
 
     def _create_boot_disk(self) -> None:
@@ -134,7 +133,7 @@ class InstanceTemplateCreator:
                     accelerator_count=self.vm_config.accelerator_count,
                 )
             ]
-        self.template.properties.service_account = [compute_v1.ServiceAccount(email="default", scopes=self.scopes)]
+        self.template.properties.service_accounts = [compute_v1.ServiceAccount(email="default", scopes=self.scopes)]
         self.template.properties.labels = self.labels
 
         vm_type = self.vm_config.vm_type
