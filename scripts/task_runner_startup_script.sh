@@ -29,6 +29,6 @@ echo "DISKS=${DISKS}"
 echo "EVERYTHING WENT WELL"
 echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
 
-echo "Deleting instance grouop ${INSTANCE_GROUP_NAME}"
-gcloud compute instance-groups managed delete --quite "${INSTANCE_GROUP_NAME}" --zone "${ZONE}"
+echo "Deleting instance group ${INSTANCE_GROUP_NAME}"
+gcloud compute instance-groups managed delete --quiet "${INSTANCE_GROUP_NAME}" --zone "${ZONE}"
 
