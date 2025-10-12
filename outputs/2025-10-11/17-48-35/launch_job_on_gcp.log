@@ -1,0 +1,43 @@
+[2025-10-11 17:48:35,809][[Asus-Rog] InstanceGroupCreator][INFO] - Starting to create instance group...
+[2025-10-11 17:48:35,810][[Asus-Rog] InstanceTemplateCreator][INFO] - Started creating instance template...
+[2025-10-11 17:48:35,810][[Asus-Rog] InstanceTemplateCreator][INFO] - self.vm_metadata_config={'instance_group_name': 'simple-rnn-bs128-251011174835', 'docker_image': 'asd', 'zone': 'us-east1-b', 'python_hash_seed': 42, 'mlflow_tracking_uri': 'localhost:6101', 'node_count': 1, 'disks': []}
+[2025-10-11 17:48:37,503][[Asus-Rog] InstanceTemplateCreator][INFO] - Using STANDARD machine
+[2025-10-11 17:48:37,550][[Asus-Rog] InstanceTemplateCreator][INFO] - Creating instance template...
+[2025-10-11 17:48:40,616][[Asus-Rog] InstanceTemplateCreator][INFO] - Instance template has been created...
+[2025-10-11 17:48:46,681][[Asus-Rog] utils][ERROR] - Exception ocurred
+Traceback (most recent call last):
+  File "/mnt/c/users/torre/documents/bigdrive/mlops-udemy/launching-jobs-on-gcp-for-distributed-model-training/utils.py", line 23, in wait_for_extended_operation
+    result = operation.result(timeout=timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/users/torre/documents/bigdrive/mlops-udemy/launching-jobs-on-gcp-for-distributed-model-training/emkademy-venv/lib/python3.12/site-packages/google/api_core/future/polling.py", line 261, in result
+    raise self._exception
+google.api_core.exceptions.NotFound: 404 NOT FOUND RESOURCE_NOT_FOUND: The resource 'projects/698416806837/zones/us-east1-b/acceleratorTypes/nvidia-tesla-t4' was not found
+[2025-10-11 17:48:46,746][[Asus-Rog] utils][ERROR] - ex.errors:
+[code: "RESOURCE_NOT_FOUND"
+message: "The resource \'projects/698416806837/zones/us-east1-b/acceleratorTypes/nvidia-tesla-t4\' was not found"
+]
+[2025-10-11 17:48:46,746][[Asus-Rog] utils][ERROR] - ex.response:
+id: 8880924582186806869
+kind: "compute#operation"
+name: "operation-1760219322289-640e8ff6e8f0d-4bd786e0-b619558f"
+user: "vladimir.torres.rivas@gmail.com"
+zone: "https://www.googleapis.com/compute/v1/projects/emkademy-465214/zones/us-east1-b"
+start_time: "2025-10-11T14:48:42.872-07:00"
+target_link: "https://www.googleapis.com/compute/v1/projects/emkademy-465214/zones/us-east1-b/instanceGroupManagers/simple-rnn-bs128-251011174835"
+progress: 100
+error {
+  errors {
+    code: "RESOURCE_NOT_FOUND"
+    message: "The resource \'projects/698416806837/zones/us-east1-b/acceleratorTypes/nvidia-tesla-t4\' was not found"
+  }
+}
+end_time: "2025-10-11T14:48:46.317-07:00"
+operation_type: "compute.instanceGroupManagers.insert"
+status: DONE
+http_error_message: "NOT FOUND"
+target_id: 3536103348732653141
+http_error_status_code: 404
+insert_time: "2025-10-11T14:48:42.869-07:00"
+self_link: "https://www.googleapis.com/compute/v1/projects/emkademy-465214/zones/us-east1-b/operations/operation-1760219322289-640e8ff6e8f0d-4bd786e0-b619558f"
+
+[2025-10-11 17:48:46,747][[Asus-Rog] utils][ERROR] - Error message: The resource 'projects/698416806837/zones/us-east1-b/acceleratorTypes/nvidia-tesla-t4' was not found

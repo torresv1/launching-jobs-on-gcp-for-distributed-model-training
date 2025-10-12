@@ -42,7 +42,7 @@ class InstanceTemplateCreatorConfig:
         "https://www.googleapis.com/auth/cloudruntimeconfig",
     ])
     network: str = SI("https://www.googleapis.com/compute/v1/projects/${.project_id}/global/networks/default")
-    subnetwork: str = SI("https://www.googleapis.com/compute/v1/projects/${.project_id}/regions/us-east1/subnetworks/default")
+    subnetwork: str = SI("https://www.googleapis.com/compute/v1/projects/${.project_id}/regions/europe-west4/subnetworks/default")
     startup_script_path: str = "scripts/task_runner_startup_script.sh"
     vm_config: VMConfig = field(default_factory=lambda: VMConfig())
     boot_disk_config: BootDiskConfig = field(default_factory=lambda: BootDiskConfig())

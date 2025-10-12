@@ -21,7 +21,7 @@ class MLFlowConfig:
 @dataclass
 class InfrastructureConfig:
     project_id: str = "emkademy-465214"
-    zone: str = "us-east1-b"
+    zone: str = "europe-west4-a"
   
     instance_group_creator: InstanceGroupCreatorConfig = field(default_factory=lambda: InstanceGroupCreatorConfig())
 
