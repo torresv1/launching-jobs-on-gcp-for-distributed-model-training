@@ -62,11 +62,11 @@ class TrainingInfo:
         print(self.get_job_info_message())
 
     def get_job_info_message(self) -> str:
-        instance_ids_regex, log_view_url, cluster_url = self._get_job_tracking_links()
+        instance_ids_regex, log_viewer_url, cluster_url = self._get_job_tracking_links()
 
         run_description = f"""
             Deployed cluster: {cluster_url}
-            Experiment logs: {log_view_url}
+            Experiment logs: {log_viewer_url}
 
             if something goes wrong type in log viewer query field:
             '''
@@ -82,8 +82,8 @@ class TrainingInfo:
         instance_ids_regex = " OR ".join(instance_ids)
         instance_ids_url = "%20OR%20".join(instance_ids)
         cluster_url = f"https://console.cloud.google.com/compute/instanceGroups/details/{self.zone}/{self.instance_group_name.lower()}?project={self.project_id}"
-        log_view_url = f"https://console.cloud.google.com/logs/query;query=resource.type%3D%22gce_instance%22%0Aresource.labels.instance_id%3D%2528{instance_ids_url}%2529?project={self.project_id}"
-        return instance_ids_regex, log_view_url, cluster_url
+        log_viewer_url = f"https://console.cloud.google.com/logs/query;query=resource.type%3D%22gce_instance%22%0Aresource.labels.instance_id%3D%2528{instance_ids_url}%2529?project={self.project_id}"
+        return instance_ids_regex, log_viewer_url, cluster_url
 
 
 
